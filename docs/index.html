@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Driver Monitoring System documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Driver Monitoring System
+          </a>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-driverMonitoring">Main DMS Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-common">Common Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-facedetect">Face Detection Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-head_pos_estimator">Head Position Estimation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-calculations">MAR and ADR Calculation Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-yawn_detector">Yawning Detection Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html#document-eyelongclosed_detector">Eyes State Detection Modules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Driver Monitoring System</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Driver Monitoring System  documentation</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="welcome-to-driver-monitoring-system-s-documentation">
+<h1>Welcome to Driver Monitoring System’s documentation!<a class="headerlink" href="#welcome-to-driver-monitoring-system-s-documentation" title="Permalink to this heading"></a></h1>
+<section id="introduction">
+<h2>Introduction:<a class="headerlink" href="#introduction" title="Permalink to this heading"></a></h2>
+<p>A driver monitoring system (DMS) is a technology designed to monitor and assess the driver’s behavior, attention, and alertness while operating a vehicle. It utilizes a combination of sensors, cameras, and advanced algorithms to detect and analyze various driver-related parameters in real-time. These parameters may include eye movements, head position, facial expressions, body posture, and even vital signs.</p>
+<section id="importance">
+<h3>Importance:<a class="headerlink" href="#importance" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Enhanced Safety: The primary objective of a driver monitoring system is to improve safety on the roads. By continuously monitoring the driver’s behavior, it can detect signs of drowsiness, distraction, or impairment. It can then issue warnings or alerts to bring the driver’s attention back to the road, potentially preventing accidents caused by human error.</p></li>
+<li><p>Fatigue and Distraction Detection: Drowsy driving and driver distraction are major contributors to road accidents. A DMS can analyze eye movements, blinking patterns, and head position to detect signs of drowsiness or driver inattention. By alerting the driver when such behavior is detected, it can help reduce the risk of accidents caused by fatigue or distractions.</p></li>
+<li><p>Real-time Driver Assistance: In addition to monitoring the driver, some DMS implementations can provide real-time assistance. For example, if the system detects that the driver is not paying attention to the road ahead, it can trigger an alert or even take control of the vehicle momentarily to avoid a potential collision.</p></li>
+<li><p>Personalized Safety Features: Driver monitoring systems can adapt to individual driver characteristics and preferences. By continuously monitoring and analyzing data, the system can learn the driver’s typical behavior and identify deviations from the norm. This allows for personalized safety features and interventions tailored to the specific needs of the driver.</p></li>
+<li><p>Fleet Management: DMS technology is particularly valuable for fleet operators. It enables them to monitor their drivers’ performance, detect risky behavior, and provide targeted training or intervention when necessary. This can help improve overall fleet safety, reduce operational costs, and protect the reputation of the company.</p></li>
+<li><p>Regulatory Compliance: Many regions and countries have started to mandate the use of driver monitoring systems in certain types of vehicles. Compliance with these regulations ensures that vehicles meet the required safety standards and contributes to a safer transportation ecosystem.</p></li>
+</ol>
+<p>In conclusion, driver monitoring systems play a crucial role in enhancing road safety by continuously monitoring and analyzing driver behavior. By detecting signs of fatigue, distraction, or impairment, these systems can help prevent accidents and improve the overall driving experience. As technology continues to advance, driver monitoring systems are expected to become more sophisticated, leading to safer roads and a reduction in preventable accidents.</p>
+</section>
+</section>
+</section>
+<section id="developed-dms">
+<h1>Developed DMS<a class="headerlink" href="#developed-dms" title="Permalink to this heading"></a></h1>
+<p>The developed DMS application contains different modules like <strong>driverMonitoring.py</strong> as the main
+module, <strong>faceDetect.py</strong> for face detection, and <strong>calculations.py</strong> for calculation of <strong>ADR</strong> and <strong>MAR</strong>.
+Other modules include <strong>headPostionEstimation.py</strong> for estimating the head position of the driver,
+<strong>faceGeometry.py</strong> which contains the 3D real-world coordinates of a generic model, and
+<strong>eyeLongClosedDetection.py</strong> for detecting the eye state and raising warning if necessary. The final
+module is the <strong>yawnDetection.py</strong> to detect the mouth state and yawn.</p>
+<p>For the application to run on PC, the packages like mediapipe, opencv-python, scipy, numpy, etc. are
+installed. These packages are installed using the <strong>pip install package_name</strong> command. Then after
+the DMS application can be run through the command prompt using the command <strong>python
+driverMonitoring.py</strong> and can be quitted by key q.</p>
+<p>In Raspberry Pi, the installation of the packages is similar to PC using <strong>pip3 install package_name</strong> except for the mediapipe package which can be installed using the command <strong>sudo pip3 install mediapipe-rpi3</strong> for Raspberry Pi 3 and <strong>sudo pip3 install mediapipe-rpi4</strong> for the Raspberry Pi 4.  Additional packages if needed can be found in <a class="reference external" href="https://pypi.org/project/mediapipe-rpi3/#description">https://pypi.org/project/mediapipe-rpi3/#description</a></p>
+<p>The whole documentation of this developed DMS is available on the <a class="reference external" href="https://urn.nsk.hr/urn:nbn:hr:200:034698">https://urn.nsk.hr/urn:nbn:hr:200:034698</a>.</p>
+<div class="toctree-wrapper compound">
+<span id="document-driverMonitoring"></span><section id="module-DriverMonitoringSystem.driverMonitoring">
+<span id="main-dms-module"></span><h2>Main DMS Module<a class="headerlink" href="#module-DriverMonitoringSystem.driverMonitoring" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.driverMonitoring.loadVideo">
+<span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.driverMonitoring.</span></span><span class="sig-name descname"><span class="pre">loadVideo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">FileName</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">FilePath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">skipFrames</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.driverMonitoring.loadVideo" title="Permalink to this definition"></a></dt>
+<dd><p>This method is used to load video from the webcam/video and process
+the frames. The frames will be processed and face will be detected
+from each frame. The while loop runs unless the user press q.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>FileName</strong> (<em>string</em>) – File name of a video.</p></li>
+<li><p><strong>FilePath</strong> (<em>string</em>) – File path of the video.</p></li>
+<li><p><strong>skipFrames</strong> (<em>string</em>) – Number of frames after which the frame will be fully
+processed.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<span id="document-common"></span><section id="module-DriverMonitoringSystem.src.common">
+<span id="common-functions"></span><h2>Common Functions<a class="headerlink" href="#module-DriverMonitoringSystem.src.common" title="Permalink to this heading"></a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.common.playy">
+<span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.common.</span></span><span class="sig-name descname"><span class="pre">playy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.common.playy" title="Permalink to this definition"></a></dt>
+<dd><p>This method will be used to play the beep sound.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Param<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<span id="document-facedetect"></span><section id="module-DriverMonitoringSystem.src.facedetect">
+<span id="face-detection-module"></span><h2>Face Detection Module<a class="headerlink" href="#module-DriverMonitoringSystem.src.facedetect" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.facedetect.FaceDetection">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.facedetect.</span></span><span class="sig-name descname"><span class="pre">FaceDetection</span></span><a class="headerlink" href="#DriverMonitoringSystem.src.facedetect.FaceDetection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to detect the face from the frame.
+The class consist of a member function detectFace.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.facedetect.FaceDetection.detectFace">
+<span class="sig-name descname"><span class="pre">detectFace</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">results</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_elapsed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fps</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.facedetect.FaceDetection.detectFace" title="Permalink to this definition"></a></dt>
+<dd><p>The function is used to detect the face.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>array</em>) – 640x480 numpy array of pixel values.</p></li>
+<li><p><strong>results</strong> (<em>array</em>) – Mesh of the face.</p></li>
+<li><p><strong>frame_count</strong> (<em>int</em>) – Frame count</p></li>
+<li><p><strong>time_elapsed</strong> (<em>float</em>) – Time elapsed counted from the start of the system.</p></li>
+<li><p><strong>fps</strong> (<em>float</em>) – Frame per second.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-head_pos_estimator"></span><section id="module-DriverMonitoringSystem.src.head_pos_estimator">
+<span id="head-position-estimation-module"></span><h2>Head Position Estimation Module<a class="headerlink" href="#module-DriverMonitoringSystem.src.head_pos_estimator" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.head_pos_estimator.HeadPosition">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.head_pos_estimator.</span></span><span class="sig-name descname"><span class="pre">HeadPosition</span></span><a class="headerlink" href="#DriverMonitoringSystem.src.head_pos_estimator.HeadPosition" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to detect the head position from the frame.
+The class consist of a member function calculate_euler_angles, setup_yaw_pitch and detect_headPos.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.calculate_euler_angles">
+<span class="sig-name descname"><span class="pre">calculate_euler_angles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">landmarks</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.calculate_euler_angles" title="Permalink to this definition"></a></dt>
+<dd><p>This function is used to calculate the Euler angles from the facial landmark points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shape</strong> (<em>tuple</em>) – Tuple consisting of height, width and number of color channels.
+(Height, Width, No. of channels)</p></li>
+<li><p><strong>landmarks</strong> (<em>array</em>) – Numpy array of the 486 landmarks point.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Pitch, yaw and roll of head.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.detect_headPos">
+<span class="sig-name descname"><span class="pre">detect_headPos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">roll</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turn_time_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.detect_headPos" title="Permalink to this definition"></a></dt>
+<dd><p>The function is used to detect the head position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>array</em>) – 640x480 numpy array of pixel values.</p></li>
+<li><p><strong>pitch</strong> (<em>float</em>) – Pitch of the face.</p></li>
+<li><p><strong>yaw</strong> (<em>float</em>) – Yaw of the face.</p></li>
+<li><p><strong>roll</strong> (<em>float</em>) – Roll of the face.</p></li>
+<li><p><strong>turn_time_threshold</strong> (<em>float</em>) – Time after which the alarm will be raised.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Text indicating the face position.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.setup_yaw_pitch">
+<span class="sig-name descname"><span class="pre">setup_yaw_pitch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pitch</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yaw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.head_pos_estimator.HeadPosition.setup_yaw_pitch" title="Permalink to this definition"></a></dt>
+<dd><p>The function records the values of pitch and yaw during the setup period that
+will be used to calculate the pitch and yaw mean point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pitch</strong> (<em>float</em>) – Pitch of the face.</p></li>
+<li><p><strong>yaw</strong> (<em>float</em>) – Yaw of the face.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-calculations"></span><section id="module-DriverMonitoringSystem.src.calculations">
+<span id="mar-and-adr-calculation-module"></span><h2>MAR and ADR Calculation Module<a class="headerlink" href="#module-DriverMonitoringSystem.src.calculations" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.calculations.Calculations">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.calculations.</span></span><span class="sig-name descname"><span class="pre">Calculations</span></span><a class="headerlink" href="#DriverMonitoringSystem.src.calculations.Calculations" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This Class will be used to compute the ADR and MAR.</p>
+<p>The class consist of 2 member functions.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.calculations.Calculations.compute_adr">
+<em class="property"><span class="pre">static</span><span class="w">  </span></em><span class="sig-name descname"><span class="pre">compute_adr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_eye</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_eye</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.calculations.Calculations.compute_adr" title="Permalink to this definition"></a></dt>
+<dd><p>This method will be used to compute the ADR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_eye</strong> (<em>list</em>) – Left eye landmark coordinates.</p></li>
+<li><p><strong>right_eye</strong> (<em>list</em>) – Right eye landmark coordinates.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Computed ADR value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.calculations.Calculations.compute_mar">
+<em class="property"><span class="pre">static</span><span class="w">  </span></em><span class="sig-name descname"><span class="pre">compute_mar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mouth</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.calculations.Calculations.compute_mar" title="Permalink to this definition"></a></dt>
+<dd><p>This method will be used to compute the MAR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mouth</strong> (<em>list</em>) – Mouth landmark coordinates.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Computed MAR value.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-yawn_detector"></span><section id="module-DriverMonitoringSystem.src.yawn_detector">
+<span id="yawning-detection-module"></span><h2>Yawning Detection Module<a class="headerlink" href="#module-DriverMonitoringSystem.src.yawn_detector" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.yawn_detector.YawnDetection">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.yawn_detector.</span></span><span class="sig-name descname"><span class="pre">YawnDetection</span></span><a class="headerlink" href="#DriverMonitoringSystem.src.yawn_detector.YawnDetection" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to detect the yawning from the frame.
+The class consist of a member function setup_mar and detect_yawn.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.yawn_detector.YawnDetection.detect_yawn">
+<span class="sig-name descname"><span class="pre">detect_yawn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mar</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yawn_time_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_elapsed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.yawn_detector.YawnDetection.detect_yawn" title="Permalink to this definition"></a></dt>
+<dd><p>The function is used to detect the yawning.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>array</em>) – 640x480 numpy array of pixel values.</p></li>
+<li><p><strong>mar</strong> (<em>float</em>) – Mouth aspect ratio (MAR).</p></li>
+<li><p><strong>frame_count</strong> (<em>int</em>) – Frame count</p></li>
+<li><p><strong>yawn_time_threshold</strong> (<em>float</em>) – Threshold time to detect the yawn.</p></li>
+<li><p><strong>time_elapsed</strong> (<em>float</em>) – Time elapsed counted from the start of the system.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.yawn_detector.YawnDetection.setup_mar">
+<span class="sig-name descname"><span class="pre">setup_mar</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mar</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.yawn_detector.YawnDetection.setup_mar" title="Permalink to this definition"></a></dt>
+<dd><p>The function records the values of MAR during the setup period that
+will be used to calculate the threshold MAR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mar</strong> (<em>float</em>) – Mouth aspect ratio (MAR).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<span id="document-eyelongclosed_detector"></span><section id="module-DriverMonitoringSystem.src.eyelongclosed_detector">
+<span id="eyes-state-detection-modules"></span><h2>Eyes State Detection Modules<a class="headerlink" href="#module-DriverMonitoringSystem.src.eyelongclosed_detector" title="Permalink to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector">
+<em class="property"><span class="pre">class</span><span class="w">  </span></em><span class="sig-prename descclassname"><span class="pre">DriverMonitoringSystem.src.eyelongclosed_detector.</span></span><span class="sig-name descname"><span class="pre">EyeLongClosedDetector</span></span><a class="headerlink" href="#DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>This class is used to detect the eye state from the frame.
+The class consist of a member function setup_adr and detect_blink.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector.detect_blink">
+<span class="sig-name descname"><span class="pre">detect_blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">img</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mean_eye_area_over_distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frame_count</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector.detect_blink" title="Permalink to this definition"></a></dt>
+<dd><p>The function is used to detect the eye state.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img</strong> (<em>array</em>) – 640x480 numpy array of pixel values.</p></li>
+<li><p><strong>adr</strong> (<em>float</em>) – Area over distance ratio (ADR).</p></li>
+<li><p><strong>frame_count</strong> (<em>int</em>) – Current frame count.</p></li>
+<li><p><strong>time_threshold</strong> (<em>float</em>) – Time threshold after which the alarm will be raised.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector.setup_adr">
+<span class="sig-name descname"><span class="pre">setup_adr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mean_eye_area_over_distance</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#DriverMonitoringSystem.src.eyelongclosed_detector.EyeLongClosedDetector.setup_adr" title="Permalink to this definition"></a></dt>
+<dd><p>The function records the values of ADR during the setup period that
+will be used to calculate the threshold ADR.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>adr</strong> (<em>float</em>) – Area over distance ratio (ADR).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Nothing.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</div>
+</section>
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+<p>Driver Monitoring System
+Copyright (c) 2023, Rajesh Rimal. All rights reserved.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Rajesh Rimal.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
