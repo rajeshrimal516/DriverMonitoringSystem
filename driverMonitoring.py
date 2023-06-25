@@ -8,17 +8,15 @@ from src.facedetect import FaceDetection
 
 def loadVideo(FileName, FilePath, skipFrames):
     """This method is used to load video from the webcam/video and process
-    the frames. The frames will be processed and face will be detected
-    from each frame. The while loop runs unless the user press q.
+        the frames. The frames will be processed and face will be detected
+        from each frame. The while loop runs unless the user press q.
 
+        :param string FileName: File name of a video.
+        :param string FilePath: File path of the video.
+        :param string skipFrames: Number of frames after which the frame will be fully
+                                    processed.
 
-
-    :param string FileName: File name of a video.
-    :param string FilePath: File path of the video.
-    :param string skipFrames: Number of frames after which the frame will be fully
-                                processed.
-
-    :returns: Nothing.
+        :returns: Nothing.
 
     """
     tstamp = time.time()
@@ -32,7 +30,7 @@ def loadVideo(FileName, FilePath, skipFrames):
           (time.time() - tstamp))
     print("[INFO] " + FileName + " starting video stream thread")
     print("[INFO] Press 'q' to quit  ")
-    cap = cv2.VideoCapture(FilePath)
+    cap = cv2.VideoCapture(FilePath, cv2.CAP_DSHOW)
     frame_count = 0
     total_start_time = 0
     previous_frame_time = 0
@@ -64,13 +62,8 @@ def loadVideo(FileName, FilePath, skipFrames):
                 img.flags.writeable = True
                 img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
                 time_elapsed = time.time() - total_start_time
-                face_detection.detectFace(
-                    img=img,
-                    results=results,
-                    frame_count=frame_count,
-                    time_elapsed=time_elapsed,
-                    fps=set_AvgFps,
-                )
+                face_detection.detectFace(img=img, results=results, frame_count=frame_count,
+                                          time_elapsed=time_elapsed, fps=set_AvgFps)
                 if time_elapsed > setup_time:
                     if is_setup_done is False:
                         set_AvgFps = int(frame_count / time_elapsed)
@@ -90,13 +83,13 @@ def loadVideo(FileName, FilePath, skipFrames):
                 cv2.putText(img=img, text="FPS: {:.2f}".format(skipFrames / duration), org=(400, 60),
                             fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=1.5,
                             color=color, thickness=2)
-                cv2.imshow("Image", img)
+                cv2.imshow("Video Cam", img)
                 frame_count += 1
             else:
                 frame_count += 1
             if cv2.waitKey(33) == ord("q"):
-                cv2.destroyAllWindows()
                 cap.release()
+                cv2.destroyAllWindows()
                 break
 
     cv2.destroyAllWindows()
@@ -104,5 +97,5 @@ def loadVideo(FileName, FilePath, skipFrames):
 
 
 if __name__ == "__main__":
-    video = ["Webcam", 0, 1]
+    video = ["Webcam", 0, 1] 
     loadVideo(FileName=video[0], FilePath=video[1], skipFrames=video[2])
