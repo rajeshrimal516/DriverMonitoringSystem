@@ -1,7 +1,7 @@
 Main DMS Module
 ===============
 
-.. automodule:: DriverMonitoringSystem.src.driverMonitoring
+.. automodule:: DriverMonitoringSystem.driverMonitoring
    :members:
    :undoc-members:
    :show-inheritance:

@@ -10,6 +10,7 @@ import os
 import sys
 sys.path.append(os.path.abspath('../..'))
 sys.path.append(os.path.abspath('../src'))
+sys.path.append(os.path.abspath('..'))
 
 project = 'Driver Monitoring System'
 copyright = '2023, Rajesh Rimal'

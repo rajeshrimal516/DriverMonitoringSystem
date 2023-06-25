@@ -3,7 +3,6 @@ import math
 import numpy as np
 import cv2
 
-
 class Calculations:
     """This Class will be used to compute the ADR and MAR.
 

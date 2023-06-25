@@ -53,8 +53,8 @@ The whole documentation of this developed DMS is available on the https://urn.ns
    :maxdepth: 1
    :caption: Contents:
    
-   common
    driverMonitoring
+   common
    facedetect
    head_pos_estimator
    calculations
