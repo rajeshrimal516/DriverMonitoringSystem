@@ -16,3 +16,18 @@ the DMS application can be run through the command prompt using the command ***p
 
 In Raspberry Pi, the installation of the packages is similar to PC using **pip3 install *package_name*** except for the mediapipe package which can be installed using the command ***sudo pip3 install mediapipe-rpi3*** for Raspberry Pi 3 and ***sudo pip3 install mediapipe-rpi4*** for the Raspberry Pi 4.  Additional packages if needed can be found in https://pypi.org/project/mediapipe-rpi3/#description
 
+## Instruction to Generate Documentation
+ 
+Install sphinx using pip 
+```
+ pip install sphinx
+ pip install sphinx_rtd_theme
+ 
+ cd docs
+ make html
+```
+
+The documentation will be generated in ***docs/_build/html/index.html***
+
+
+
