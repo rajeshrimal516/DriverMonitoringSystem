@@ -4,19 +4,18 @@ import cv2
 import time
 from face_geometry import get_metric_landmarks, PCF, procrustes_landmark_basis
 from threading import Thread
-from playsound import playsound
-
-
-def playy():
-    print("beep")
-    playsound('beep.mp3', block=False)
-
+from common import playy
 
 class HeadPosition:
-    def __init__(self):
-        print('     [INFO] Head Position INIT done.')
 
+    """ This class is used to detect the head position from the frame.
+        The class consist of a member function calculate_euler_angles, setup_yaw_pitch and detect_headPos.
+    """
+    def __init__(self):
+        """Initializes the variables used to detect head position"""
+        print('     [INFO] Head Position INIT done.')
         self._turn_count = 0
+        '''Turn count'''
         self._isTurned = False
         self._turn_threshold = 30
         self.frame = 0
@@ -31,7 +30,17 @@ class HeadPosition:
         self.points_idx = list(set(self.points_idx))
         self.points_idx.sort()
 
-    def head_position_data(self, shape, landmarks):
+    def calculate_euler_angles(self, shape, landmarks):
+        '''This function is used to calculate the Euler angles from the facial landmark points.
+
+            :param tuple shape: Tuple consisting of height, width and number of color channels.
+                                (Height, Width, No. of channels)
+            :param array landmarks: Numpy array of the 486 landmarks point.
+
+            :returns: Pitch, yaw and roll of head.
+
+            :rtype: float
+        '''
         frame_height, frame_width, _ = shape
         center = (frame_width / 2, frame_height / 2)
         focal_length = shape[1]
@@ -58,10 +67,30 @@ class HeadPosition:
         return pitch, yaw, roll
 
     def setup_yaw_pitch(self, pitch, yaw):
+        """The function records the values of pitch and yaw during the setup period that 
+            will be used to calculate the pitch and yaw mean point.
+
+            :param float pitch: Pitch of the face.
+            :param float yaw: Yaw of the face.
+
+            :returns: Nothing.
+        """
         self._pitch_meanPoint_setup.append(pitch)
         self._yaw_meanPoint_setup.append(yaw)
 
-    def detect_headPos(self, img, pitch, yaw, roll, frame_count, turn_time_threshold):
+    def detect_headPos(self, img, pitch, yaw, roll, turn_time_threshold):
+        """The function is used to detect the head position.
+            
+            :param array img: 640x480 numpy array of pixel values.
+            :param float pitch: Pitch of the face.
+            :param float yaw: Yaw of the face.
+            :param float roll: Roll of the face.
+            :param float turn_time_threshold: Time after which the alarm will be raised.
+
+            :returns: Text indicating the face position.
+
+            :rtype: string
+        """
         text = "Normal Position"
         color = (36, 53, 78)
         T = Thread(target=playy)
@@ -70,7 +99,6 @@ class HeadPosition:
             self._yaw_meanPoint_setup.sort(reverse=True)
             lower_limit = int(0.15 * len(self._yaw_meanPoint_setup))
             upper_limit = int(0.70 * len(self._yaw_meanPoint_setup))
-            print(self._pitch_meanPoint_setup)
             self._pitch_mean_point = round(sum(self._pitch_meanPoint_setup[lower_limit:upper_limit]) /
                                            len(self._pitch_meanPoint_setup[lower_limit:upper_limit]), 4)
             self._yaw_mean_point = round(sum(self._yaw_meanPoint_setup[lower_limit:upper_limit]) /

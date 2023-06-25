@@ -1,22 +1,36 @@
-"""import the necessary packages"""
 import cv2
-import sys
 import time
 import mediapipe as mp
-from facedetect import FaceDetection
 import numpy as np
 import datetime
+from facedetect import FaceDetection
 
 
 def loadVideo(FileName, FilePath, skipFrames):
+    """This method is used to load video from the webcam/video and process
+    the frames. The frames will be processed and face will be detected
+    from each frame. The while loop runs unless the user press q.
+
+
+
+    :param string FileName: File name of a video.
+    :param string FilePath: File path of the video.
+    :param string skipFrames: Number of frames after which the frame will be fully
+                                processed.
+
+    :returns: Nothing.
+
+    """
     tstamp = time.time()
-    print('[INFO] Initialization in progress')
+    print("[INFO] Initialization in progress")
     mp_face_mesh = mp.solutions.face_mesh
-    face_mesh = mp_face_mesh.FaceMesh(max_num_faces=1, min_detection_confidence=0.5,
-                                      min_tracking_confidence=0.5)
+    face_mesh = mp_face_mesh.FaceMesh(
+        max_num_faces=1, min_detection_confidence=0.5, min_tracking_confidence=0.5
+    )
     face_detection = FaceDetection()
-    print('[INFO] Initialization Complete in  (%.4f sec)' % (time.time() - tstamp))
-    print('[INFO] ' + FileName + ' starting video stream thread')
+    print("[INFO] Initialization Complete in  (%.4f sec)" %
+          (time.time() - tstamp))
+    print("[INFO] " + FileName + " starting video stream thread")
     print("[INFO] Press 'q' to quit  ")
     cap = cv2.VideoCapture(FilePath)
     frame_count = 0
@@ -50,8 +64,13 @@ def loadVideo(FileName, FilePath, skipFrames):
                 img.flags.writeable = True
                 img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
                 time_elapsed = time.time() - total_start_time
-                face_detection.detectFace(img=img, results=results, frame_count=frame_count, time_elapsed=time_elapsed,
-                                          fps=set_AvgFps)
+                face_detection.detectFace(
+                    img=img,
+                    results=results,
+                    frame_count=frame_count,
+                    time_elapsed=time_elapsed,
+                    fps=set_AvgFps,
+                )
                 if time_elapsed > setup_time:
                     if is_setup_done is False:
                         set_AvgFps = int(frame_count / time_elapsed)
@@ -72,34 +91,18 @@ def loadVideo(FileName, FilePath, skipFrames):
                             fontFace=cv2.FONT_HERSHEY_PLAIN, fontScale=1.5,
                             color=color, thickness=2)
                 cv2.imshow("Image", img)
-                # name = './data/' + str(frame_count) + '.jpg'
-                # cv2.imwrite(name, img)
                 frame_count += 1
             else:
                 frame_count += 1
-            if cv2.waitKey(33) == ord('q'):
+            if cv2.waitKey(33) == ord("q"):
                 cv2.destroyAllWindows()
                 cap.release()
                 break
 
     cv2.destroyAllWindows()
     cap.release()
-    total_duration = time.time() - total_start_time
-    avg_FPS = round(frame_count / total_duration, 2)
-    print('[INFO] ' + FileName + ' with ' + str(frame_count) + ' Frames stream finished in  (%.4f sec)'
-          % total_duration + " and whole Average FPS: " + str(avg_FPS) + " and setup average FPS: " + str(
-        set_AvgFps) + '\n')
-    return avg_FPS, set_AvgFps
 
 
-if __name__ == '__main__':
-    directory = "./testVideos/"
-    video = "1-Female.avi"
-    skipFrames = 1
-    path = directory + video
-    avgFps, setAvgFps = loadVideo(FileName=video, FilePath=path, skipFrames=skipFrames)
-    file = open("./data/FPS_" + str(skipFrames) + ".txt", 'a')
-    file.writelines("------ " + video + " ------\n")
-    file.writelines("Average FPS: " + str(avgFps) + " Average setup FPS: " + str(setAvgFps) + "\n\n")
-    file.close()
-    print("\n------------------------------------------------------------------------------\n")
+if __name__ == "__main__":
+    video = ["Webcam", 0, 1]
+    loadVideo(FileName=video[0], FilePath=video[1], skipFrames=video[2])

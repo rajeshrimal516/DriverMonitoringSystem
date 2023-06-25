@@ -2,15 +2,15 @@ import time
 import cv2
 import os
 
-from playsound import playsound
 from threading import Thread
-
-def playy():
-    print("beep")
-    playsound('beep.mp3', block=False)
+from common import playy
 
 class YawnDetection:
+    """ This class is used to detect the yawning from the frame.
+        The class consist of a member function setup_mar and detect_yawn.
+    """
     def __init__(self):
+        """! Initializes the program."""
         self._frame_count = 0
         self._mouth_mar_threshold = 1
         self._mouth_min_thresh = 150
@@ -33,17 +33,30 @@ class YawnDetection:
         self._is_mar_setup_done = True
         self._yawning = 0
         self.yawnDecrease = False
-        #         self.LedPin = 11
-        #         GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
-        #         GPIO.setup(self.LedPin, GPIO.OUT)   # Set LedPin's mode is output
-        #         GPIO.output(self.LedPin, GPIO.HIGH) # Set LedPin high(+3.3V) to off led
-
         print('     [INFO] Yawn Detector INIT done')
 
     def setup_mar(self, mar):
+        """The function records the values of MAR during the setup period that 
+            will be used to calculate the threshold MAR.
+
+            :param float mar: Mouth aspect ratio (MAR).
+
+            :returns: Nothing.
+
+        """
         self._mouth_mar_setup.append(mar)
 
     def detect_yawn(self, img, mar, frame_count, yawn_time_threshold,time_elapsed):
+        """The function is used to detect the yawning.
+
+            :param array img: 640x480 numpy array of pixel values.
+            :param float mar: Mouth aspect ratio (MAR).
+            :param int frame_count: Frame count
+            :param float yawn_time_threshold: Threshold time to detect the yawn.
+            :param float time_elapsed: Time elapsed counted from the start of the system.
+
+            :returns: Nothing
+        """
         T = Thread(target=playy)
         if self._is_mar_setup_done is True:
             self._mouth_mar_setup.sort(reverse=False)
@@ -70,7 +83,6 @@ class YawnDetection:
                         cv2.putText(img, "Warning, Yawning From: {}th frame".format(self._start_frame), (10, 390),
                                     cv2.FONT_HERSHEY_PLAIN, 1.5,
                                     (0, 0, 255), 2)
-                        print(frame_count, "Yawning ", self._start_frame)
                     if self._yawning == 0:
                         self._yawning = time.time()
                     else:

@@ -3,14 +3,14 @@ import cv2
 import os
 
 from threading import Thread
-from playsound import playsound
-
-def playy():
-    print("beep")
-    playsound('beep.mp3',block=False)
+from common import playy
 
 
 class EyeLongClosedDetector:
+    """ This class is used to detect the eye state from the frame.
+        The class consist of a member function setup_adr and detect_blink.
+    """
+
     def __init__(self):
         self._eye_long_closed = False
         self._eye_area_over_distance_thresh = 1
@@ -24,20 +24,28 @@ class EyeLongClosedDetector:
 
         print('     [INFO] blink Detector INIT done')
 
-    """
-        Appends the Mean Eye Area over Distance Ratio (ADR) for 5 seconds.
-        After 5 seconds is reached, it calculates the threshold based on the observed ADR values of the eyes
-        when the eyes are open.
-        Here, 
-            Largest 10 ADR values are used to calculate the threshold. These largest ADR values corresponds
-             to the open eye ADR value.
-            Threshold is calculated as: Average of 10 Maximum ADR - 0.78 % of Average of 10 Maximum ADR
-    """
-
     def setup_adr(self, mean_eye_area_over_distance):
+        """The function records the values of ADR during the setup period that 
+        will be used to calculate the threshold ADR.
+
+        :param float adr: Area over distance ratio (ADR).
+
+        :returns: Nothing.
+
+        """
         self._eye_area_over_distance_setup.append(mean_eye_area_over_distance)
 
     def detect_blink(self, img, mean_eye_area_over_distance, frame_count, time_threshold):
+        """The function is used to detect the eye state.
+
+        :param array img: 640x480 numpy array of pixel values.
+        :param float adr: Area over distance ratio (ADR).
+        :param int frame_count: Current frame count.
+        :param float time_threshold: Time threshold after which the alarm will be raised.
+
+        :returns: Nothing.
+
+        """
         color = (79, 52, 32)
         T = Thread(target=playy)
 
@@ -50,7 +58,8 @@ class EyeLongClosedDetector:
             self._eye_area_over_distance_thresh = \
                 self._eye_area_over_distance_thresh * 0.90
             self._is_threshold_set = False
-            print("Eye Closed check Threshold: (< Threshold is Closed): ", self._eye_area_over_distance_thresh)
+            print("Eye Closed check Threshold: (< Threshold is Closed): ",
+                  self._eye_area_over_distance_thresh)
             del self._eye_area_over_distance_setup
             del upperlimit
         else:
@@ -65,18 +74,12 @@ class EyeLongClosedDetector:
                     cv2.putText(img, "Eye Close Time: {:.2f} secs".format(close_time), (10, 240),
                                 cv2.FONT_HERSHEY_PLAIN, 1.5,
                                 color, 2)
-                    # if close_time > 0.01:
-                    #     self._isBlinked = True
                     if close_time > time_threshold:
                         T.start()
                         cv2.putText(img, "Warning, Closed from {:.2f} frame".format(self._start_frame), (10, 270),
                                     cv2.FONT_HERSHEY_PLAIN, 1.5,
                                     (0, 0, 255), 2)
                         self._eye_long_closed = True
-                        T.join()
-
-                        # playy()
-
 
             else:
                 if self._isBlinked is True:
@@ -95,5 +98,3 @@ class EyeLongClosedDetector:
                     color, 2)
         cv2.putText(img, "Eye L. Close : {}".format(self._long_closed_count), (400, 120), cv2.FONT_HERSHEY_PLAIN, 1.5,
                     color, 2)
-        # cv2.putText(img, "Eye Blink : {}".format(self._blink_total), (400, 150), cv2.FONT_HERSHEY_PLAIN, 1.5,
-        #             color, 2)
