@@ -3,7 +3,7 @@ import time
 import mediapipe as mp
 import numpy as np
 import datetime
-from facedetect import FaceDetection
+from src.facedetect import FaceDetection
 
 
 def loadVideo(FileName, FilePath, skipFrames):

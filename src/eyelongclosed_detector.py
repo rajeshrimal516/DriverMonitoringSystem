@@ -3,7 +3,7 @@ import cv2
 import os
 
 from threading import Thread
-from common import playy
+from src.common import playy
 
 
 class EyeLongClosedDetector:

@@ -2,9 +2,9 @@ import numpy as np
 import cv2
 
 import time
-from face_geometry import get_metric_landmarks, PCF, procrustes_landmark_basis
+from src.face_geometry import get_metric_landmarks, PCF, procrustes_landmark_basis
 from threading import Thread
-from common import playy
+from src.common import playy
 
 class HeadPosition:
 

@@ -1,9 +1,9 @@
 import cv2
 
-from eyelongclosed_detector import EyeLongClosedDetector
-from yawn_detector import YawnDetection
-from head_pos_estimator import HeadPosition
-from calculations import Calculations
+from src.eyelongclosed_detector import EyeLongClosedDetector
+from src.yawn_detector import YawnDetection
+from src.head_pos_estimator import HeadPosition
+from src.calculations import Calculations
 import numpy as np
 import time
 

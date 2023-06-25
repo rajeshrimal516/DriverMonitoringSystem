@@ -3,7 +3,7 @@ import cv2
 import os
 
 from threading import Thread
-from common import playy
+from src.common import playy
 
 class YawnDetection:
     """ This class is used to detect the yawning from the frame.

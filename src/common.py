@@ -7,4 +7,4 @@ def playy():
 
         :returns: Nothing.
     """     
-    playsound('beep.mp3', block=False)
+    playsound('../audio/beep.mp3', block=False)
