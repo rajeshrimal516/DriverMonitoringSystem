@@ -1,5 +1,5 @@
 opencv-python==4.5.4.60
 mediapipe==0.8.9
-playsound=1.2.2
+playsound==1.2.2
 scipy==1.7.3
 utils==1.0.1
