@@ -10,10 +10,33 @@ Other modules include ***headPostionEstimation.py*** for estimating the head pos
 ***eyeLongClosedDetection.py*** for detecting the eye state and raising a warning if necessary. The final 
 module is the ***yawnDetection.py*** to detect the mouth state and yawn. 
 
-For the application to run on a PC, the packages like mediapipe, opencv-python, scipy, numpy, etc. are 
-installed. These packages are installed using the **pip install -r requirements.txt** command. If any missing packages can be installed using **pip install <package_name>** Then the DMS application can be run through the command prompt using the command ***python driverMonitoring.py*** and can be quitted by key ‘**q**’.
+### Creating and activating the virtual Environment
 
-In Raspberry Pi, the installation of the packages is similar to PC using **pip3 install *package_name*** except for the mediapipe package which can be installed using the command ***sudo pip3 install mediapipe-rpi3*** for Raspberry Pi 3 and ***sudo pip3 install mediapipe-rpi4*** for the Raspberry Pi 4.  Additional packages if needed can be found at https://pypi.org/project/mediapipe-rpi3/#description
+```
+python -m venv .venv
+.venv\Scripts\python.exe -m pip install -r requirements.txt
+.venv\Scripts\activate
+
+```
+### Running application in venv
+```
+python driverMonitoring.py
+```
+
+### Quiting the application
+```
+press 'q'
+```
+### Raspberry PI
+Same process as above but for mediapipe 
+```
+sudo pip3 install mediapipe-rpi3
+
+or 
+
+sudo pip3 install mediapipe-rpi4
+```
+Additional packages if needed can be found at https://pypi.org/project/mediapipe-rpi3/#description
 
 ## Instruction to Generate Documentation
  
